@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "counter/**",
+            "destination": "/index.html"
+        }
+    ]
+}

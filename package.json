@@ -1,0 +1,39 @@
+{
+  "name": "fdk.mfe-projects",
+  "version": "0.0.1",
+  "description": "Sample webpack5 project / experiment",
+  "private": true,
+  "repository": "https://github.com/KiriLL4101/fdk.mfe-projects",
+  "author": "Kiril Fedechkin <fedechkin-kiril@mail.ru>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "_envs": "echo [{\"PKG\":\"counter\"},{\"PKG\":\"item\"},{\"PKG\":\"cart\"},{\"PKG\":\"checkout\"}]",
+    "lint": "eslint .",
+    "check": "yarn lint",
+    "check-ci": "yarn lint",
+    "build:pkg": "echo \"${PKG}\" && yarn build",
+    "watch:pkg": "echo \"${PKG}\" && yarn watch",
+    "serve:pkg": "echo \"${PKG}\" && yarn serve",
+    "clean": "rm -rf packages/*/dist",
+    "build": "builder envs -l info build:pkg $(yarn -s _envs)",
+    "watch-and-serve:pkg": "builder concurrent watch:pkg serve:pkg",
+    "serve": "builder envs -l info serve:pkg $(yarn -s _envs)",
+    "deploy": "node scripts/deploy/surge.js",
+    "start": "builder envs -l info watch-and-serve:pkg $(yarn -s _envs)"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "builder": "^5.0.0",
+    "chalk": "^4.1.1",
+    "eslint": "^7.31.0",
+    "eslint-config-formidable": "^4.0.0",
+    "eslint-plugin-filenames": "^1.3.2",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-promise": "^5.1.0",
+    "execa": "^5.1.1",
+    "surge": "^0.23.0"
+  }
+}
